@@ -12,7 +12,6 @@ import pickle
 import pandas as pd
 import re
 from sklearn.utils import resample
-#from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.dummy import DummyRegressor
 from sklearn.pipeline import Pipeline
@@ -23,15 +22,12 @@ from sklearn.linear_model import Ridge
 from sklearn.linear_model import PoissonRegressor
 from sklearn.ensemble import HistGradientBoostingRegressor
 from sklearn.preprocessing import OrdinalEncoder
-#from sklearn.model_selection import cross_validate
 from sklearn.utils import shuffle
 from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 from sklearn.compose import make_column_selector
 from sklearn.metrics import make_scorer
 from sklearn.metrics import f1_score
-#from sklearn.model_selection import cross_val_score
-#from sklearn.metrics import mean_poisson_deviance
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -376,10 +372,9 @@ def main():
     score_estimator(gbrt_modified_base,df_test, "gbrt modified base")
     score_estimator(gbrt_modified,df_test, "gbrt modified")
     score_estimator(dnSampleMdls, df_test, "bagging gbrt base")
-    score_estimator(dnSampleMdls+[gbrt_modified], df_test, "bagging gbrt and modified hybrid")
     
-    showError([zero, baseLine, ridge_glm, poisson_glm, gbrt_plain,gbrt_modified,dnSampleMdls,dnSampleMdls+[gbrt_modified_base],dnSampleMdls+[gbrt_modified]],
-              ["zero","baseLine","ridge","Poisson","grbt base","grbt modified","bgging gbrt","hybrid base","hybrid new"]
+    showError([zero, baseLine, ridge_glm, poisson_glm, gbrt_plain,gbrt_modified,dnSampleMdls],
+              ["zero","baseLine","ridge","Poisson","grbt base","grbt modified","bgging gbrt"]
               )
     
 if __name__ == "__main__":
